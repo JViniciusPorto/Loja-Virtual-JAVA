@@ -5,7 +5,7 @@ public class ItemCompra {
     private String nomeProduto;
     private int quantidadeProduto;
     private double precoUnitario;
-
+    
     public ItemCompra(int idProduto, String nomeProduto, int quantidadeProduto, double precoUnitario){
         this.idProduto = idProduto;
         this.nomeProduto = nomeProduto;
