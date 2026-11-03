@@ -1,6 +1,6 @@
 package br.com.lojavirtual.model.pagamento;
 
-import br.com.lojavirtual.exception.CvvCartaoInvalido;
+import br.com.lojavirtual.exception.CvvCartaoInvalidoException;
 import br.com.lojavirtual.exception.NumeroCartaoInvalidoException;
 import br.com.lojavirtual.exception.TitularCartaoInvalidoException;
 import br.com.lojavirtual.exception.ValidadeCartaoInvalidaException;
@@ -39,7 +39,7 @@ public abstract class PagamentoCartao implements FormaPagamento{
 
     private void cvvValido() {
         if (cvv == null || !cvv.matches("\\d{3}")){
-            throw new CvvCartaoInvalido();
+            throw new CvvCartaoInvalidoException();
         }
     }
 
