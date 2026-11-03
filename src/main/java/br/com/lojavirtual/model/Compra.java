@@ -6,8 +6,6 @@ import java.util.List;
 import br.com.lojavirtual.model.pagamento.FormaPagamento;
 
 public class Compra {
-    //lembrar de que se o sistema fechar o contador reseta
-    private static int proximoId = 1;
     private int idCompra;
 
     private LocalDateTime horarioCompra;
@@ -18,8 +16,8 @@ public class Compra {
     private double desconto;
     private double valorFinal;
 
-    public  Compra(LocalDateTime horarioCompra, String nomeComprador, List<ItemCompra> itensComprados, FormaPagamento pagamento){
-        this.idCompra = Compra.proximoId++;
+    public  Compra(int idCompra, LocalDateTime horarioCompra, String nomeComprador, List<ItemCompra> itensComprados, FormaPagamento pagamento){
+        this.idCompra = idCompra;
         this.horarioCompra = horarioCompra;
         this.nomeComprador = nomeComprador;
         this.itensComprados = List.copyOf(itensComprados);
