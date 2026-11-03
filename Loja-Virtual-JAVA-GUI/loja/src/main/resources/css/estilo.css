@@ -1,0 +1,179 @@
+/* Tema da Loja Virtual (JavaFX CSS) */
+
+.root {
+    -cor-fundo: #f4f6fb;
+    -cor-primaria: #3f51b5;
+    -cor-primaria-escura: #303f9f;
+    -cor-perigo: #d32f2f;
+    -cor-perigo-escura: #b71c1c;
+    -cor-texto: #263238;
+    -cor-texto-suave: #607d8b;
+    -cor-borda: #dfe3ee;
+
+    -fx-accent: -cor-primaria;
+    -fx-focus-color: -cor-primaria;
+    -fx-faint-focus-color: transparent;
+    -fx-font-family: "Segoe UI", "System";
+    -fx-font-size: 14px;
+    -fx-background-color: -cor-fundo;
+    -fx-text-fill: -cor-texto;
+}
+
+.label {
+    -fx-text-fill: -cor-texto;
+}
+
+/* ---------- Textos ---------- */
+
+.titulo-grande {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-primaria;
+}
+
+.titulo-medio {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.subtitulo {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.rotulo-secundario {
+    -fx-text-fill: -cor-texto-suave;
+}
+
+.status {
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
+}
+
+.valor-destaque {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.cabecalho {
+    -fx-background-color: -cor-primaria;
+}
+
+.titulo-cabecalho {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* ---------- Cartão (painéis brancos) ---------- */
+
+.cartao {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 14, 0, 0, 3);
+}
+
+/* ---------- Botões ---------- */
+
+.button {
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-padding: 7 16 7 16;
+}
+
+.botao-primario {
+    -fx-background-color: -cor-primaria;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.botao-primario:hover {
+    -fx-background-color: -cor-primaria-escura;
+}
+
+.botao-perigo {
+    -fx-background-color: -cor-perigo;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.botao-perigo:hover {
+    -fx-background-color: -cor-perigo-escura;
+}
+
+.botao-claro {
+    -fx-background-color: white;
+    -fx-text-fill: -cor-primaria;
+    -fx-font-weight: bold;
+}
+
+.botao-claro:hover {
+    -fx-background-color: #e8eaf6;
+}
+
+/* ---------- Campos de texto ---------- */
+
+.text-field, .password-field {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: -cor-borda;
+    -fx-background-color: white;
+    -fx-padding: 7 10 7 10;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: -cor-primaria;
+}
+
+/* ---------- Tabelas ---------- */
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: -cor-borda;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #eef1fa;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #eef1fa;
+    -fx-size: 38;
+    -fx-border-color: transparent transparent -cor-borda transparent;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: -cor-texto;
+}
+
+.table-row-cell {
+    -fx-cell-size: 36;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -cor-primaria;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+/* ---------- Abas ---------- */
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: white;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-padding: 6 18 6 18;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab .tab-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

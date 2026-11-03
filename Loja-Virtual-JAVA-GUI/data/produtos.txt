@@ -1,0 +1,4 @@
+5141	Monitor 16 Polegadas	1399.99	7
+6690	Mouse Gamer	179.99	9
+6847	Cadeira Gamer	279.99	14
+8652	Placa de Vídeo	3499.99	4
