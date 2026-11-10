@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.lojavirtual.ui.CompradorController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="cabecalho">
+         <padding>
+            <Insets bottom="14.0" left="24.0" right="24.0" top="14.0" />
+         </padding>
+         <children>
+            <Label fx:id="labelBoasVindas" styleClass="titulo-cabecalho" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#sair" styleClass="botao-claro" text="Sair" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <TabPane fx:id="abas" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Produtos">
+               <content>
+                  <VBox spacing="10.0">
+                     <padding>
+                        <Insets bottom="16.0" left="20.0" right="20.0" top="16.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="subtitulo" text="Produtos disponíveis" />
+                        <TableView fx:id="tabelaProdutos" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colProdId" text="ID" />
+                              <TableColumn fx:id="colProdNome" text="Produto" />
+                              <TableColumn fx:id="colProdPreco" text="Preço" />
+                              <TableColumn fx:id="colProdEstoque" text="Em estoque" />
+                           </columns>
+                           <placeholder>
+                              <Label text="Nenhum produto disponível no momento." />
+                           </placeholder>
+                        </TableView>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Quantidade:" />
+                              <TextField fx:id="campoQtdProduto" onAction="#adicionarAoCarrinho" prefWidth="70.0"
+                                         text="1" />
+                              <Button onAction="#adicionarAoCarrinho" styleClass="botao-primario"
+                                      text="Adicionar ao carrinho" />
+                              <Label fx:id="labelStatus" styleClass="status" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Carrinho">
+               <content>
+                  <VBox spacing="10.0">
+                     <padding>
+                        <Insets bottom="16.0" left="20.0" right="20.0" top="16.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="subtitulo" text="Seu carrinho" />
+                        <TableView fx:id="tabelaCarrinho" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colCarId" text="ID" />
+                              <TableColumn fx:id="colCarNome" text="Produto" />
+                              <TableColumn fx:id="colCarQtd" text="Qtd." />
+                              <TableColumn fx:id="colCarPreco" text="Preço unit." />
+                              <TableColumn fx:id="colCarSubtotal" text="Subtotal" />
+                           </columns>
+                           <placeholder>
+                              <Label text="Seu carrinho está vazio." />
+                           </placeholder>
+                        </TableView>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label text="Quantidade:" />
+                              <TextField fx:id="campoQtdCarrinho" onAction="#alterarQuantidade" prefWidth="70.0" />
+                              <Button onAction="#alterarQuantidade" text="Alterar quantidade" />
+                              <Button onAction="#removerItem" styleClass="botao-perigo" text="Remover item" />
+                              <Button onAction="#limparCarrinho" text="Limpar carrinho" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                           <children>
+                              <Label fx:id="labelSubtotal" styleClass="valor-destaque" />
+                              <Button fx:id="botaoFinalizar" onAction="#finalizarCompra" styleClass="botao-primario"
+                                      text="Finalizar compra" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Histórico de compras">
+               <content>
+                  <VBox spacing="10.0">
+                     <padding>
+                        <Insets bottom="16.0" left="20.0" right="20.0" top="16.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="subtitulo" text="Suas compras" />
+                        <TableView fx:id="tabelaHistorico" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colHistId" text="Compra" />
+                              <TableColumn fx:id="colHistData" text="Data e hora" />
+                              <TableColumn fx:id="colHistPagamento" text="Pagamento" />
+                              <TableColumn fx:id="colHistValor" text="Valor final" />
+                           </columns>
+                           <placeholder>
+                              <Label text="Você ainda não fez nenhuma compra." />
+                           </placeholder>
+                        </TableView>
+                        <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                           <children>
+                              <Label fx:id="labelTotalGasto" styleClass="valor-destaque" />
+                              <Button onAction="#atualizarHistorico" text="Atualizar" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

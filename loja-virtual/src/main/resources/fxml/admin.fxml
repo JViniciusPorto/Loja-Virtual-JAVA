@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.lojavirtual.ui.AdminController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="cabecalho">
+         <padding>
+            <Insets bottom="14.0" left="24.0" right="24.0" top="14.0" />
+         </padding>
+         <children>
+            <Label styleClass="titulo-cabecalho" text="Painel do Administrador" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#sair" styleClass="botao-claro" text="Sair" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <HBox spacing="20.0">
+         <padding>
+            <Insets bottom="20.0" left="24.0" right="24.0" top="20.0" />
+         </padding>
+         <children>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label styleClass="subtitulo" text="Produtos cadastrados" />
+                  <TableView fx:id="tabela" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colId" text="ID" />
+                        <TableColumn fx:id="colNome" text="Nome" />
+                        <TableColumn fx:id="colPreco" text="Preço" />
+                        <TableColumn fx:id="colEstoque" text="Estoque" />
+                     </columns>
+                     <placeholder>
+                        <Label text="Nenhum produto cadastrado." />
+                     </placeholder>
+                  </TableView>
+                  <Label fx:id="labelTotal" styleClass="rotulo-secundario" />
+                  <Label fx:id="labelStatus" styleClass="status" />
+               </children>
+            </VBox>
+            <VBox maxHeight="-Infinity" minWidth="320.0" prefWidth="320.0" spacing="8.0" styleClass="cartao">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Label fx:id="labelModo" styleClass="subtitulo" text="Novo produto" />
+                  <Label text="Nome" />
+                  <TextField fx:id="campoNome" onAction="#salvar" />
+                  <Label text="Preço (R$)" />
+                  <TextField fx:id="campoPreco" onAction="#salvar" promptText="Ex.: 89,90" />
+                  <Label text="Estoque" />
+                  <TextField fx:id="campoEstoque" onAction="#salvar" promptText="Ex.: 10" />
+                  <Button fx:id="botaoSalvar" maxWidth="Infinity" onAction="#salvar" styleClass="botao-primario"
+                          text="Cadastrar produto">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button maxWidth="Infinity" onAction="#novo" text="Novo / limpar formulário" />
+                  <Button fx:id="botaoRemover" maxWidth="Infinity" onAction="#remover" styleClass="botao-perigo"
+                          text="Remover produto selecionado" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

@@ -1,0 +1,6 @@
+1001	Mouse Gamer	89.90	100
+1002	Teclado Mecânico	249.90	100
+1003	Headset USB	159.00	20
+1004	Monitor 24 polegadas	899.00	15
+1005	Webcam Full HD	199.90	30
+3974	Placa de Vídeo RTX	2500.00	10
