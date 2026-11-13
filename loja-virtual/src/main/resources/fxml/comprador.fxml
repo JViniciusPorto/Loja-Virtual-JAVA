@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.lojavirtual.ui.CompradorController">
+
+   <!-- ============================ BARRA SUPERIOR ============================ -->
+   <top>
+      <HBox fx:id="barraTopo" alignment="CENTER_LEFT" spacing="14.0" styleClass="topbar">
+         <padding>
+            <Insets bottom="12.0" left="14.0" right="20.0" top="12.0" />
+         </padding>
+         <children>
+            <Button fx:id="botaoMenu" onAction="#alternarMenu" styleClass="botao-topo">
+               <graphic>
+                  <Region styleClass="icone, icone-menu, icone-g" />
+               </graphic>
+            </Button>
+
+            <HBox alignment="CENTER_LEFT" onMouseClicked="#abrirInicio" spacing="10.0" styleClass="marca">
+               <children>
+                  <StackPane styleClass="marca-logo">
+                     <children>
+                        <Region styleClass="icone, icone-raio, icone-branco" />
+                     </children>
+                  </StackPane>
+                  <Label styleClass="marca-nome" text="Loja" />
+                  <Label styleClass="marca-nome-destaque" text="Virtual">
+                     <HBox.margin>
+                        <Insets left="-8.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <HBox fx:id="caixaBusca" alignment="CENTER_LEFT" maxWidth="620.0" minWidth="150.0" prefWidth="520.0"
+                  spacing="8.0" styleClass="busca-box" HBox.hgrow="ALWAYS">
+               <children>
+                  <Region styleClass="icone, icone-busca" />
+                  <TextField fx:id="campoBusca" onAction="#pesquisar" promptText="Buscar produtos pelo nome..."
+                             styleClass="busca-campo" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="botaoLimparBusca" managed="false" onAction="#limparBusca" styleClass="busca-limpar"
+                          visible="false">
+                     <graphic>
+                        <Region styleClass="icone, icone-fechar, icone-p" />
+                     </graphic>
+                  </Button>
+                  <Button onAction="#pesquisar" styleClass="busca-botao" text="Buscar" />
+               </children>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Button fx:id="botaoCarrinhoTopo" onAction="#abrirCarrinho" styleClass="botao-topo">
+               <graphic>
+                  <StackPane>
+                     <children>
+                        <Region styleClass="icone, icone-carrinho, icone-g" />
+                        <Label fx:id="labelBadge" styleClass="badge" text="0" translateX="12.0" translateY="-10.0"
+                               StackPane.alignment="TOP_RIGHT" />
+                     </children>
+                  </StackPane>
+               </graphic>
+            </Button>
+
+            <HBox fx:id="chipUsuario" alignment="CENTER" spacing="8.0" styleClass="usuario-chip">
+               <children>
+                  <Region styleClass="icone, icone-pessoa" />
+                  <Label fx:id="labelBoasVindas" styleClass="usuario-nome" />
+               </children>
+            </HBox>
+
+            <Button fx:id="botaoSairTopo" onAction="#sair" styleClass="botao-topo" text="Sair">
+               <graphic>
+                  <Region styleClass="icone, icone-sair" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+
+   <!-- ============================== MENU LATERAL ============================== -->
+   <left>
+      <VBox fx:id="menuLateral" prefWidth="224.0" spacing="6.0" styleClass="sidebar">
+         <padding>
+            <Insets bottom="16.0" left="12.0" right="12.0" top="18.0" />
+         </padding>
+         <children>
+            <Label fx:id="rotuloMenu" styleClass="sidebar-rotulo" text="NAVEGAÇÃO" />
+            <Button fx:id="btnInicio" maxWidth="Infinity" onAction="#abrirInicio" styleClass="menu-item" text="Início">
+               <graphic>
+                  <Region styleClass="icone, icone-casa" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnCarrinho" maxWidth="Infinity" onAction="#abrirCarrinho" styleClass="menu-item"
+                    text="Carrinho">
+               <graphic>
+                  <Region styleClass="icone, icone-carrinho" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnHistorico" maxWidth="Infinity" onAction="#abrirHistorico" styleClass="menu-item"
+                    text="Minhas compras">
+               <graphic>
+                  <Region styleClass="icone, icone-recibo" />
+               </graphic>
+            </Button>
+            <Region VBox.vgrow="ALWAYS" />
+            <Button fx:id="btnSair" maxWidth="Infinity" onAction="#sair" styleClass="menu-item" text="Sair">
+               <graphic>
+                  <Region styleClass="icone, icone-sair" />
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+
+   <!-- ================================ CONTEÚDO ================================ -->
+   <center>
+      <StackPane fx:id="areaCentral">
+         <children>
+
+            <!-- Página inicial: banner, filtros e produtos -->
+            <ScrollPane fx:id="paginaInicio" fitToWidth="true" hbarPolicy="NEVER" styleClass="pagina-scroll">
+               <content>
+                  <VBox spacing="26.0" styleClass="pagina">
+                     <padding>
+                        <Insets bottom="36.0" left="28.0" right="28.0" top="24.0" />
+                     </padding>
+                     <children>
+                        <StackPane fx:id="banner" alignment="CENTER_LEFT" minHeight="176.0" styleClass="banner">
+                           <children>
+                              <Circle mouseTransparent="true" radius="130.0" styleClass="banner-circulo"
+                                      translateX="70.0" translateY="-40.0" StackPane.alignment="CENTER_RIGHT" />
+                              <Circle mouseTransparent="true" radius="72.0" styleClass="banner-circulo-2"
+                                      translateX="-60.0" translateY="80.0" StackPane.alignment="CENTER_RIGHT" />
+                              <Circle mouseTransparent="true" radius="30.0" styleClass="banner-circulo"
+                                      translateX="-300.0" translateY="-62.0" StackPane.alignment="CENTER_RIGHT" />
+                              <Region mouseTransparent="true" opacity="0.32" rotate="-14.0"
+                                      styleClass="icone, icone-etiqueta, icone-xxg, icone-branco" translateX="-110.0"
+                                      StackPane.alignment="CENTER_RIGHT" />
+                              <VBox maxWidth="580.0" spacing="10.0" StackPane.alignment="CENTER_LEFT">
+                                 <padding>
+                                    <Insets bottom="26.0" left="32.0" right="26.0" top="26.0" />
+                                 </padding>
+                                 <children>
+                                    <Label maxWidth="-Infinity" styleClass="banner-selo" text="OFERTA DE PAGAMENTO" />
+                                    <Label minHeight="-Infinity" styleClass="banner-titulo" wrapText="true"
+                                           text="Pague no débito ou no Pix e economize" />
+                                    <Label minHeight="-Infinity" styleClass="banner-texto" wrapText="true"
+                                           text="10% de desconto no cartão de débito e 5% no Pix, aplicados automaticamente na hora de pagar." />
+                                    <Button maxWidth="-Infinity" onAction="#irParaProdutos" styleClass="banner-botao"
+                                            text="Ver produtos">
+                                       <VBox.margin>
+                                          <Insets top="4.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </StackPane>
+
+                        <VBox spacing="12.0">
+                           <children>
+                              <Label styleClass="titulo-secao" text="Filtrar produtos" />
+                              <FlowPane fx:id="filtros" hgap="10.0" vgap="10.0" />
+                           </children>
+                        </VBox>
+
+                        <VBox fx:id="secaoProdutos" spacing="14.0">
+                           <children>
+                              <HBox alignment="BASELINE_LEFT" spacing="10.0">
+                                 <children>
+                                    <Label styleClass="titulo-secao" text="Produtos" />
+                                    <Label fx:id="labelContagem" styleClass="texto-suave" />
+                                 </children>
+                              </HBox>
+                              <FlowPane fx:id="gradeProdutos" hgap="18.0" vgap="18.0">
+                                 <padding>
+                                    <Insets bottom="6.0" top="6.0" />
+                                 </padding>
+                              </FlowPane>
+                              <VBox fx:id="vazioProdutos" alignment="CENTER" managed="false" spacing="10.0"
+                                    styleClass="vazio" visible="false">
+                                 <children>
+                                    <Region styleClass="icone, icone-busca, icone-xg, icone-claro" />
+                                    <Label styleClass="subtitulo" text="Nenhum produto encontrado" />
+                                    <Label styleClass="texto-suave" text="Tente outro nome ou remova os filtros." />
+                                    <Button onAction="#limparFiltros" styleClass="botao-secundario"
+                                            text="Limpar busca e filtros" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+
+            <!-- Carrinho -->
+            <VBox fx:id="paginaCarrinho" managed="false" spacing="16.0" styleClass="pagina" visible="false">
+               <padding>
+                  <Insets bottom="24.0" left="28.0" right="28.0" top="24.0" />
+               </padding>
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="12.0">
+                     <children>
+                        <VBox spacing="2.0">
+                           <children>
+                              <Label styleClass="titulo-pagina" text="Seu carrinho" />
+                              <Label fx:id="labelResumoItens" styleClass="texto-suave" />
+                           </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="botaoLimpar" onAction="#limparCarrinho" styleClass="botao-perigo-suave"
+                                text="Limpar carrinho">
+                           <graphic>
+                              <Region styleClass="icone, icone-lixeira" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="rolagemCarrinho" fitToWidth="true" hbarPolicy="NEVER" minWidth="300.0"
+                                    HBox.hgrow="ALWAYS">
+                           <content>
+                              <VBox fx:id="listaCarrinho" spacing="12.0">
+                                 <padding>
+                                    <Insets bottom="12.0" left="4.0" right="6.0" top="4.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                        <VBox fx:id="resumoCarrinho" maxHeight="-Infinity" minWidth="250.0" prefWidth="300.0"
+                              spacing="12.0" styleClass="card-resumo">
+                           <padding>
+                              <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
+                           </padding>
+                           <children>
+                              <Label styleClass="subtitulo" text="Resumo do pedido" />
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="texto-suave" text="Itens" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="labelQtdItens" />
+                                 </children>
+                              </HBox>
+                              <Region styleClass="separador" />
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="subtitulo" text="Subtotal" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="labelSubtotal" styleClass="resumo-total" />
+                                 </children>
+                              </HBox>
+                              <Label minHeight="-Infinity" styleClass="texto-pequeno" wrapText="true"
+                                     text="Os descontos de Pix e débito são aplicados na etapa de pagamento." />
+                              <Button fx:id="botaoFinalizar" maxWidth="Infinity" onAction="#finalizarCompra"
+                                      styleClass="botao-primario" text="Finalizar compra">
+                                 <graphic>
+                                    <Region styleClass="icone, icone-check" />
+                                 </graphic>
+                              </Button>
+                              <Button maxWidth="Infinity" onAction="#abrirInicio" styleClass="botao-secundario"
+                                      text="Continuar comprando" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Histórico de compras -->
+            <VBox fx:id="paginaHistorico" managed="false" spacing="16.0" styleClass="pagina" visible="false">
+               <padding>
+                  <Insets bottom="24.0" left="28.0" right="28.0" top="24.0" />
+               </padding>
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="14.0">
+                     <children>
+                        <VBox spacing="2.0">
+                           <children>
+                              <Label styleClass="titulo-pagina" text="Minhas compras" />
+                              <Label fx:id="labelQtdCompras" styleClass="texto-suave" />
+                           </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="stat-card">
+                           <padding>
+                              <Insets bottom="10.0" left="14.0" right="20.0" top="10.0" />
+                           </padding>
+                           <children>
+                              <StackPane styleClass="circulo-icone">
+                                 <children>
+                                    <Region styleClass="icone, icone-dinheiro, icone-g" />
+                                 </children>
+                              </StackPane>
+                              <VBox>
+                                 <children>
+                                    <Label styleClass="stat-rotulo" text="Total gasto" />
+                                    <Label fx:id="labelTotalGasto" styleClass="stat-valor" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Button onAction="#atualizarHistorico" styleClass="botao-secundario" text="Atualizar" />
+                     </children>
+                  </HBox>
+                  <ScrollPane fx:id="rolagemHistorico" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox fx:id="listaHistorico" spacing="10.0">
+                           <padding>
+                              <Insets bottom="12.0" left="4.0" right="6.0" top="4.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
