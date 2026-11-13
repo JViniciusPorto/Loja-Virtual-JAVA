@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" minWidth="420.0" prefWidth="560.0"
+      spacing="16.0" styleClass="dialogo" fx:controller="br.com.lojavirtual.ui.PagamentoController">
+   <fx:define>
+      <ToggleGroup fx:id="grupoPagamento" />
+   </fx:define>
+   <children>
+      <VBox spacing="2.0">
+         <children>
+            <Label styleClass="titulo-medio" text="Pagamento" />
+            <Label styleClass="texto-suave" text="Escolha como deseja pagar para finalizar a compra." />
+         </children>
+      </VBox>
+
+      <ScrollPane fx:id="rolagem" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox spacing="14.0">
+               <padding>
+                  <Insets bottom="6.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <ToggleButton fx:id="tbCredito" maxWidth="Infinity" styleClass="opcao-pagamento"
+                                      toggleGroup="$grupoPagamento" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <VBox alignment="CENTER" spacing="4.0">
+                                 <children>
+                                    <Region styleClass="icone, icone-cartao, icone-g" />
+                                    <Label styleClass="opcao-titulo" text="Crédito" />
+                                    <Label styleClass="opcao-desc" text="Valor integral" />
+                                 </children>
+                              </VBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="tbDebito" maxWidth="Infinity" styleClass="opcao-pagamento"
+                                      toggleGroup="$grupoPagamento" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <VBox alignment="CENTER" spacing="4.0">
+                                 <children>
+                                    <Region styleClass="icone, icone-cartao, icone-g" />
+                                    <Label styleClass="opcao-titulo" text="Débito" />
+                                    <Label styleClass="opcao-desc" text="10% de desconto" />
+                                 </children>
+                              </VBox>
+                           </graphic>
+                        </ToggleButton>
+                        <ToggleButton fx:id="tbPix" maxWidth="Infinity" styleClass="opcao-pagamento"
+                                      toggleGroup="$grupoPagamento" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <VBox alignment="CENTER" spacing="4.0">
+                                 <children>
+                                    <Region styleClass="icone, icone-pix, icone-g" />
+                                    <Label styleClass="opcao-titulo" text="Pix" />
+                                    <Label styleClass="opcao-desc" text="5% de desconto" />
+                                 </children>
+                              </VBox>
+                           </graphic>
+                        </ToggleButton>
+                     </children>
+                  </HBox>
+
+                  <Label fx:id="infoForma" maxWidth="Infinity" styleClass="info-forma" wrapText="true" />
+
+                  <VBox fx:id="painelCartao" spacing="6.0">
+                     <children>
+                        <Label styleClass="rotulo-campo" text="Número do cartão (16 dígitos)" />
+                        <TextField fx:id="campoNumero" promptText="0000 0000 0000 0000" />
+                        <Label fx:id="erroNumero" styleClass="msg-erro" wrapText="true" />
+                        <Label styleClass="rotulo-campo" text="Nome do titular" />
+                        <TextField fx:id="campoTitular" promptText="Como está escrito no cartão" />
+                        <Label fx:id="erroTitular" styleClass="msg-erro" wrapText="true" />
+                        <HBox spacing="14.0">
+                           <children>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="rotulo-campo" text="Validade (MM/AA)" />
+                                    <TextField fx:id="campoValidade" promptText="12/30" />
+                                    <Label fx:id="erroValidade" styleClass="msg-erro" wrapText="true" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="rotulo-campo" text="CVV (3 dígitos)" />
+                                    <PasswordField fx:id="campoCvv" promptText="•••" />
+                                    <Label fx:id="erroCvv" styleClass="msg-erro" wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+
+      <Region styleClass="separador" />
+
+      <VBox spacing="8.0">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label styleClass="texto-suave" text="Subtotal" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="labelSubtotal" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label styleClass="texto-suave" text="Desconto" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="labelDesconto" styleClass="msg-sucesso" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <Label styleClass="subtitulo" text="Valor final" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="labelValorFinal" styleClass="resumo-total" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+
+      <HBox alignment="CENTER_RIGHT" spacing="10.0">
+         <children>
+            <Button cancelButton="true" onAction="#cancelar" styleClass="botao-secundario" text="Cancelar" />
+            <Button fx:id="botaoConfirmar" defaultButton="true" onAction="#confirmar" styleClass="botao-primario"
+                    text="Confirmar pagamento">
+               <graphic>
+                  <Region styleClass="icone, icone-check" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
